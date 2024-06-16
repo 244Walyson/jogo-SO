@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Process Manager</title>
+</head>
+<body>
+    <h1>Process Manager</h1>
+    <form method="post" action="/create">
+        <button type="submit">Create Process</button>
+    </form>
+    <form method="post" action="/execute">
+        <button type="submit">Execute Process</button>
+    </form>
+    <form method="post" action="/block">
+        <button type="submit">Block Process</button>
+    </form>
+    <form method="post" action="/release">
+        <button type="submit">Release Process</button>
+    </form>
+    <h2>Processes</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>State</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="process : ${processes}">
+                <td th:text="${process.id}"></td>
+                <td th:text="${process.state}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
