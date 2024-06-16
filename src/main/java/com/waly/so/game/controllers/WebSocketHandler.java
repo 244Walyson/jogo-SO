@@ -7,6 +7,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 public class WebSocketHandler extends TextWebSocketHandler {
@@ -35,8 +36,6 @@ public class WebSocketHandler extends TextWebSocketHandler {
     tasks.forEach(task -> {
         try {
             session.sendMessage(new TextMessage("Connections Active: " + task.getTaskId() + " - " + task.getUsername()));
-            System.out.println("IF Connections Active: " + task.getTaskId() + " - " + task.getUsername());
-          System.out.println("Connections Active: " + task.getTaskId() + " - " + task.getUsername());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -45,7 +44,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
     for (WebSocketSession activeSession : sessions) {
         try {
-          if(!activeSession.getId().equals(session.getId())){
+          if(activeSession.isOpen() && !activeSession.getId().equals(session.getId())){
             activeSession.sendMessage(new TextMessage("New connection: " + session.getId() + " - " + username));
           }
         } catch (IOException e) {
@@ -53,6 +52,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
         }
     }
 
+    session.sendMessage(new TextMessage("Your id is: " + session.getId()));
     tasks.forEach(task -> {
       System.out.println("Task " + task.getTaskId() + " - " + task.getUsername());
     });
@@ -66,10 +66,19 @@ public class WebSocketHandler extends TextWebSocketHandler {
     System.out.println("Mensagem recebida de " + session.getId() + ": " + payload);
 
     if (message.getPayload().contains("start")) {
+      sessions.forEach(session1 -> {
+        try {
+          if(session1.isOpen()){
+            session1.sendMessage(new TextMessage("Starting"));
+          }
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      });
       try {
         tasks.forEach(Task::startTask);
       } catch (IllegalThreadStateException e) {
-        tasks.forEach(Task::startTask);
+        resetThreads();
       }
 
       threadWinner();
@@ -78,10 +87,21 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
   }
 
+  private void resetThreads() {
+    tasks.forEach(task -> {
+      task.setThread(new Thread());
+      task.setReady(false);
+      task.setStartTime(new AtomicLong(0));
+      task.setEndTime(new AtomicLong(0));
+      task.setDiffTime(0);
+    });
+    tasks.forEach(Task::startTask);
+  }
+
   private void threadWinner(){
     while (tasks.stream().anyMatch(task -> !task.getReady())) {
       try {
-        Thread.sleep(100);
+        Thread.sleep(5);
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
@@ -92,11 +112,11 @@ public class WebSocketHandler extends TextWebSocketHandler {
     tasks.sort(Comparator.comparing(Task::getDiffTime));
     List<String> ranking = new ArrayList<>();
     for (int i = 0; i < tasks.size(); i++) {
-      ranking.add( i + 1 + "º Colocado: " + tasks.get(i).getSessionId() + " com " + tasks.get(i).getDiffTime() + "ms");
+      ranking.add("{ \"username\": \"" + tasks.get(i).getUsername() + "\", \"position\": " + i + ", \"time\": " + tasks.get(i).getDiffTime() + ", \"id\": \"" + tasks.get(0).getTaskId() + "\" }");
     }
      sessions.forEach(session -> {
        try {
-         session.sendMessage(new TextMessage("Ranking: " + ranking));
+         session.sendMessage(new TextMessage("Ranking: $$" + ranking));
        } catch (Exception e) {
          e.printStackTrace();
        }
@@ -112,7 +132,9 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
     sessions.forEach(session1 -> {
       try {
-        session1.sendMessage(new TextMessage("Connection closed: " + session.getId()));
+        if (session1.isOpen()){
+          session1.sendMessage(new TextMessage("Connection closed: " + session.getId() + " - " + tasks.stream().filter(task -> task.getSessionId().equals(session.getId())).findFirst().get().getUsername()));
+        }
       } catch (IOException e) {
         e.printStackTrace();
       }
