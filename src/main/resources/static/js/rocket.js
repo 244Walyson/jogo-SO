@@ -11,9 +11,18 @@ function getQueryVariable(variable) {
 
 WebSocketConnect();
 
+
 function generateUUID() {
-  return crypto.randomUUID();
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0,
+            v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
 }
+
+// Exemplo de como você pode usar
+const uuid = generateUUID();
+console.log(uuid);
 
 function WebSocketConnect() {
 
@@ -27,7 +36,7 @@ function WebSocketConnect() {
   const username = getQueryVariable("username");
   const rocketsContainer = document.getElementById("rockets");
   let connectionId = getQueryVariable("id");
-  const socket = new WebSocket(`ws://localhost:8090/endpoint?username=${username}&&id=${connectionId}`);
+  const socket = new WebSocket(`ws://localhost:8080/endpoint?username=${username}&&id=${connectionId}`);
   let myId;
   let rancking = [];
 
