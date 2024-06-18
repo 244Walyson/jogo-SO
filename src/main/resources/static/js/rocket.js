@@ -1,3 +1,6 @@
+const websocketUrl = "ws://localhost:3080";
+
+
 function getQueryVariable(variable) {
   const query = window.location.search.substring(1);
   const vars = query.split('&');
@@ -38,7 +41,7 @@ function WebSocketConnect() {
   let connectionId = getQueryVariable("id");
   const socket = new WebSocket(`ws://localhost:3080/endpoint?username=${username}&&id=${connectionId}`);
   let myId;
-  let rancking = [];
+  let ranking = [];
 
   socket.onopen = function (event) {
     console.log("WebSocket connection established");
@@ -78,7 +81,7 @@ function WebSocketConnect() {
     if (message.includes("Ranking:")) {
       try {
         const rankingStr = message.split("$$")[1];
-        rancking = JSON.parse(rankingStr);
+        ranking = JSON.parse(rankingStr);
       } catch (error) {
         console.error("Erro ao processar mensagem de ranking:", error);
       }
@@ -176,7 +179,7 @@ function WebSocketConnect() {
       const rockets = document.querySelectorAll(".rocket img");
       rockets.forEach((rocketImg) => {
         rocketImg.src = "/assets/rocket-ground.gif";
-        showRanking(rancking);
+        showRanking(ranking);
       });
     }, 3000);
   }
