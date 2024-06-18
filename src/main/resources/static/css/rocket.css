@@ -1,0 +1,192 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #333333;
+  font-family: Arial, sans-serif;
+  color: #fff;
+}
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  transition: filter 0.3s ease;
+}
+
+.overlay.blur {
+  filter: blur(5px);
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.rockets button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  min-width: 300px;
+  width: 100%;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  font-size: 30px;
+  border-radius: 30px;
+}
+
+.rockets button:hover {
+  background-color: #0f011c;
+}
+
+.rockets {
+  display: flex;
+  width: 100%;
+  max-width: 90%;
+  height: 70vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+.launch-rockets {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.rocket {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: calc(25% - 20px); /* Ajusta o tamanho base dos foguetes */
+  min-width: 100px;
+}
+
+.rocket img {
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  width: 450px;
+  height: auto;
+}
+
+.rocket h2 {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.top {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.page {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+  top: 0; /* Fix to top */
+  background-color: #333333;
+  padding: 10px;
+  z-index: 1000;
+}
+
+.pucminas {
+  width: auto;
+  height: 200px;
+}
+
+.pucminas img {
+  width: 100%;
+  height: 100%;
+}
+
+.ranking-list {
+  width: 100%;
+  max-width: 260px;
+}
+
+.mini-winner-invisible img{
+  display: none;
+
+}
+.ranking-list h2 {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+.ranking-list-h2 h2 {
+  display: none;
+}
+
+.ranking-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ranking-list li {
+  text-align: justify;
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.winner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.43); /* Fundo semi-transparente para destacar */
+}
+
+
+.winner img {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+}
+
+.mini-winner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: auto;
+}
+
+.mini-winner img {
+  width: 100%;
+  height: 100%;
+}
+
+

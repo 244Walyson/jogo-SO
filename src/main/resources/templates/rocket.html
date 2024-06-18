@@ -3,78 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebSocket Game</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-        .container {
-            text-align: center;
-        }
-        .message {
-            margin-bottom: 10px;
-        }
-        .button-container {
-            margin-top: 20px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .ranking {
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/rocket.css">
+    <title>Rocket</title>
 </head>
 <body>
-<div class="container">
-    <div class="message" id="connectionStatus"></div>
-    <div class="button-container">
-        <button id="startButton">Start Game</button>
-        <button id="resetButton">Reset Game</button>
+
+<div class="overlay">
+
+    <div class="page">
+
+        <div class="top">
+            <div class="pucminas">
+                <img src="/assets/puc.png" alt="">
+            </div>
+
+            <div class="ranking-list ranking-list-h2">
+                <h2>Ranking</h2>
+                <ul>
+                </ul>
+            </div>
+        </div>
+
+        <div class="rockets">
+            <div class="launch-rockets" id="rockets">
+
+            </div>
+            <div class="start">
+                <button id="start">Start</button>
+            </div>
+        </div>
+
+
+        <div class="mini-winner mini-winner-invisible">
+            <img src="/assets/winner.png" alt="">
+        </div>
     </div>
-    <div class="ranking" id="ranking"></div>
+
 </div>
 
-<script>
-    // WebSocket connection
-    const socket = new WebSocket('ws://localhost:8080/endpoint');
 
-    socket.onmessage = function(event) {
-        const message = event.data;
-        console.log('Message received:', message);
-        if (message.startsWith('Conexão estabelecida')) {
-            document.getElementById('connectionStatus').textContent = message;
-        } else if (message.startsWith('Ranking:')) {
-            const ranking = JSON.parse(message.substr(8));
-            updateRanking(ranking);
-        }
-    };
-
-    // Event listeners for buttons
-    document.getElementById('startButton').addEventListener('click', function() {
-        socket.send('start');
-    });
-
-    document.getElementById('resetButton').addEventListener('click', function() {
-        socket.send('reset');
-    });
-
-    function updateRanking(ranking) {
-        const rankingContainer = document.getElementById('ranking');
-        rankingContainer.innerHTML = '<h2>Ranking:</h2>';
-        ranking.forEach(entry => {
-            const div = document.createElement('div');
-            div.textContent = entry;
-            rankingContainer.appendChild(div);
-        });
-    }
-</script>
+<script src="/js/rocket.js"></script>
 </body>
 </html>

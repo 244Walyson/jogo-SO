@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #117DBF;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.options input {
+  margin: 0 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  font-size: 30px;
+  border-radius: 20px;
+  margin: 10px;
+}
+
+.options button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  font-size: 30px;
+  border-radius: 20px;
+}
+
+.options button:hover {
+  background-color: #0f011c;
+}
+
+/* Estilos para a imagem dentro da sobreposição */
+.overlay img {
+  width: 500px;
+}

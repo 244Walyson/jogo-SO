@@ -29,7 +29,7 @@ public class Task {
         startTime.set(System.currentTimeMillis());
         thread.start();
        try {
-           for (int i = 0; i < 500; i++) {
+           for (int i = 0; i < 800; i++) {
                Thread.sleep(7);
            }
            endTask();

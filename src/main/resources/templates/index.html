@@ -1,36 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <title>Process Manager</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Rocket</title>
 </head>
 <body>
-    <h1>Process Manager</h1>
-    <form method="post" action="/create">
-        <button type="submit">Create Process</button>
-    </form>
-    <form method="post" action="/execute">
-        <button type="submit">Execute Process</button>
-    </form>
-    <form method="post" action="/block">
-        <button type="submit">Block Process</button>
-    </form>
-    <form method="post" action="/release">
-        <button type="submit">Release Process</button>
-    </form>
-    <h2>Processes</h2>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>State</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="process : ${processes}">
-                <td th:text="${process.id}"></td>
-                <td th:text="${process.state}"></td>
-            </tr>
-        </tbody>
-    </table>
+
+<div class="overlay">
+    <img src="/assets/puc.png" alt="post_pucminas">
+
+    <div class="options">
+        <div class="name">
+            <input type="text" id="username" placeholder="Your nickname">
+        </div>
+
+        <div class="launch">
+            <button id="launch">Go</button>
+        </div>
+    </div>
+</div>
+
+<script src="/js/script.js"></script>
+
 </body>
 </html>
