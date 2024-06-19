@@ -1,3 +1,7 @@
+const websocket_url = "ws://localhost:8080";
+
+
+
 function getQueryVariable(variable) {
   const query = window.location.search.substring(1);
   const vars = query.split('&');
@@ -36,7 +40,7 @@ function WebSocketConnect() {
   const username = getQueryVariable("username");
   const rocketsContainer = document.getElementById("rockets");
   let connectionId = getQueryVariable("id");
-  const socket = new WebSocket(`ws://localhost:3080/endpoint?username=${username}&&id=${connectionId}`);
+  const socket = new WebSocket(`${websocket_url}/endpoint?username=${username}&&id=${connectionId}`);
   let myId;
   let rancking = [];
 
