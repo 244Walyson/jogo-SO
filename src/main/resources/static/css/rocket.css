@@ -76,7 +76,7 @@ body {
   align-items: center;
   flex-grow: 1;
   flex-shrink: 1;
-  flex-basis: calc(25% - 20px); /* Ajusta o tamanho base dos foguetes */
+  flex-basis: calc(25% - 20px);
   min-width: 100px;
 }
 
@@ -109,7 +109,7 @@ body {
   align-items: center;
   width: 100%;
   flex-direction: column;
-  top: 0; /* Fix to top */
+  top: 0;
   background-color: #333333;
   padding: 10px;
   z-index: 1000;
@@ -130,14 +130,15 @@ body {
   max-width: 260px;
 }
 
-.mini-winner-invisible img{
+.mini-winner-invisible img {
   display: none;
-
 }
+
 .ranking-list h2 {
   font-size: 30px;
   margin-bottom: 10px;
 }
+
 .ranking-list-h2 h2 {
   display: none;
 }
@@ -163,9 +164,8 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.43); /* Fundo semi-transparente para destacar */
+  background-color: rgba(0, 0, 0, 0.43);
 }
-
 
 .winner img {
   max-width: 100%;
@@ -189,4 +189,58 @@ body {
   height: 100%;
 }
 
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .options {
+    flex-direction: column;
+    max-width: 100%;
+  }
 
+  .rockets button {
+    min-width: 200px;
+    font-size: 20px;
+  }
+
+  .rocket {
+    flex-basis: calc(50% - 20px);
+  }
+
+  .rocket img {
+    width: 100%;
+  }
+
+  .top {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .rockets button {
+    min-width: 150px;
+    font-size: 18px;
+    padding: 5px 10px;
+  }
+
+  .rocket {
+    flex-basis: 100%;
+    min-width: auto;
+  }
+
+  .rocket h2 {
+    font-size: 16px;
+  }
+
+  .ranking-list {
+    max-width: 100%;
+  }
+
+  .ranking-list h2 {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .ranking-list li {
+    font-size: 20px;
+    text-align: center;
+  }
+}
