@@ -1,46 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/rocket.css">
     <title>Rocket</title>
+    <link rel="stylesheet" href="/css/rocket.css">
 </head>
 <body>
 
 <div class="overlay">
-
     <div class="page">
-
         <div class="top">
             <div class="pucminas">
                 <img src="/assets/puc.png" alt="">
             </div>
-
             <div class="ranking-list ranking-list-h2">
                 <h2>Ranking</h2>
                 <ul>
+                    <!-- Aqui serão adicionados dinamicamente os itens do ranking -->
                 </ul>
             </div>
         </div>
 
         <div class="rockets">
             <div class="launch-rockets" id="rockets">
-
+                <!-- Aqui serão adicionados dinamicamente os foguetes -->
             </div>
             <div class="start">
                 <button id="start">Start</button>
             </div>
         </div>
 
-
         <div class="mini-winner mini-winner-invisible">
             <img src="/assets/winner.png" alt="">
         </div>
     </div>
-
 </div>
-
 
 <script src="/js/rocket.js"></script>
 </body>
