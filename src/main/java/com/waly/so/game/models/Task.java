@@ -1,5 +1,6 @@
 package com.waly.so.game.models;
 
+import com.waly.so.game.services.FleuryAlgorithm;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -29,11 +30,10 @@ public class Task {
         startTime.set(System.currentTimeMillis());
         thread.start();
        try {
-           for (int i = 0; i < 800; i++) {
-               Thread.sleep(7);
-           }
+           FleuryAlgorithm fleuryAlgorithm = FleuryAlgorithm.generateCircularEulerianGraph(1000);
+           fleuryAlgorithm.executeFleury();
            endTask();
-       } catch (InterruptedException e) {
+       } catch (Exception e) {
            e.printStackTrace();
        }
     }

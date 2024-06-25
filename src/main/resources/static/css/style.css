@@ -5,7 +5,7 @@
 }
 
 body {
-
+  /* You can add specific styles for the body here if needed */
 }
 
 .overlay {
@@ -58,4 +58,31 @@ body {
 /* Estilos para a imagem dentro da sobreposição */
 .overlay img {
   width: 500px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .options input,
+  .options button {
+    font-size: 24px;
+    padding: 8px 16px;
+    margin: 8px;
+  }
+
+  .overlay img {
+    width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .options input,
+  .options button {
+    font-size: 18px;
+    padding: 6px 12px;
+    margin: 6px;
+  }
+
+  .overlay img {
+    width: 200px;
+  }
 }
