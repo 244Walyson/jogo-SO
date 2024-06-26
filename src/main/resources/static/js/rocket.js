@@ -1,4 +1,4 @@
-const websocket_url = "wss://game.waly.dev.br";
+const websocket_url = "ws://localhost:8080";
 
 function getQueryVariable(variable) {
   const query = window.location.search.substring(1);
@@ -57,6 +57,7 @@ function WebSocketConnect() {
 
 
     if(message.includes("Starting")){
+      clearRanking()
       startGame();
     }
 
@@ -184,6 +185,13 @@ function WebSocketConnect() {
       });
     }, 3000);
   }
+
+  function clearRanking() {
+    const rankingList = document.querySelector('.ranking-list ul');
+    rankingList.innerHTML = ''; // Limpa o conteúdo da lista de ranking
+  }
+
+
 
   function showRanking(jsonRanking) {
     const rankingList = document.querySelector('.ranking-list ul');
