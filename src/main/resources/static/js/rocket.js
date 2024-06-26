@@ -24,7 +24,6 @@ function generateUUID() {
 
 // Exemplo de como você pode usar
 const uuid = generateUUID();
-console.log(uuid);
 
 function WebSocketConnect() {
 
@@ -52,7 +51,6 @@ function WebSocketConnect() {
 
     if (message.includes("Your id is:")) {
       myId = message.split(": ")[1];
-      console.log("My id: ", myId);
     }
 
 
@@ -197,9 +195,6 @@ function WebSocketConnect() {
     const rankingList = document.querySelector('.ranking-list ul');
     rankingList.innerHTML = '';
     const firstPlaceId = jsonRanking[0]?.id;
-
-    console.log("My id: ", myId);
-    console.log("First place id: ", firstPlaceId);
 
     const winner = document.querySelector('.overlay .mini-winner');
 

@@ -32,22 +32,7 @@ body {
   max-width: 800px;
 }
 
-.rockets button {
-  margin: 0 10px;
-  padding: 10px 20px;
-  min-width: 300px;
-  width: 100%;
-  border: none;
-  background-color: #000;
-  color: #fff;
-  cursor: pointer;
-  font-size: 30px;
-  border-radius: 30px;
-}
-
-.rockets button:hover {
-  background-color: #0f011c;
-}
+/* Removido .rockets button */
 
 .rockets {
   display: flex;
@@ -211,7 +196,7 @@ body {
   text-align: center;
 }
 
-.start-button button:hover {
+.start-button:hover {
   background-color: #0f011c;
 }
 

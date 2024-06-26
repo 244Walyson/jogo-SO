@@ -99,8 +99,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
   }
 
   private void threadWinner(){
-    while (tasks.stream().anyMatch(task -> !task.getReady())) {
-    }
+    while (tasks.stream().anyMatch(task -> !task.getReady())) {}
     threadCounter();
   }
   private void threadCounter() {

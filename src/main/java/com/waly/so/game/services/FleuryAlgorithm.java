@@ -72,7 +72,7 @@ public class FleuryAlgorithm {
             if (isValidNextEdge(u, v)) {
                 System.out.print(u + "-" + v + " ");
                 removeEdge(u, v);
-                Thread.sleep(2); // Adiciona atraso de 2 ms
+                Thread.sleep(0, 700); // Atraso de 0 milissegundos e 500 nanossegundos
                 printEulerUtil(v);
             }
         }
