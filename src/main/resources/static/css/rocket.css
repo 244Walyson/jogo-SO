@@ -127,7 +127,8 @@ body {
 
 .ranking-list {
   width: 100%;
-  max-width: 260px;
+  max-width: 400px;
+  min-height: 200px;
 }
 
 .mini-winner-invisible img {
@@ -174,7 +175,7 @@ body {
 }
 
 .mini-winner {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   width: 200px;
