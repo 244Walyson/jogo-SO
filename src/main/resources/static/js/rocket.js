@@ -1,4 +1,4 @@
-const websocket_url = "ws://localhost:8080";
+const websocket_url = "wss://game.waly.dev.br";
 
 function getQueryVariable(variable) {
   const query = window.location.search.substring(1);
