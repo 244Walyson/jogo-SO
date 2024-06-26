@@ -1,6 +1,5 @@
 const websocket_url = "ws://localhost:8080";
 
-
 function getQueryVariable(variable) {
   const query = window.location.search.substring(1);
   const vars = query.split('&');
@@ -63,11 +62,13 @@ function WebSocketConnect() {
 
     if (message.includes("New connection")) {
       const nick = message.split("- ")[1];
+      removeRocket(nick)
       addRocket(nick);
     }
 
     if (message.includes("Connections Active")) {
       const nick = message.split("- ")[1];
+      removeRocket(nick)
       addRocket(nick);
     }
 
