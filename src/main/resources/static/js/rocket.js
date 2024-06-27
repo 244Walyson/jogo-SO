@@ -1,5 +1,4 @@
-const websocket_url = "ws://localhost:8080";
-
+const websocket_url = "wss://game.waly.dev.br";
 
 function getQueryVariable(variable) {
   const query = window.location.search.substring(1);
@@ -25,7 +24,6 @@ function generateUUID() {
 
 // Exemplo de como você pode usar
 const uuid = generateUUID();
-console.log(uuid);
 
 function WebSocketConnect() {
 
@@ -53,21 +51,23 @@ function WebSocketConnect() {
 
     if (message.includes("Your id is:")) {
       myId = message.split(": ")[1];
-      console.log("My id: ", myId);
     }
 
 
     if(message.includes("Starting")){
+      clearRanking()
       startGame();
     }
 
     if (message.includes("New connection")) {
       const nick = message.split("- ")[1];
+      removeRocket(nick)
       addRocket(nick);
     }
 
     if (message.includes("Connections Active")) {
       const nick = message.split("- ")[1];
+      removeRocket(nick)
       addRocket(nick);
     }
 
@@ -184,13 +184,17 @@ function WebSocketConnect() {
     }, 3000);
   }
 
+  function clearRanking() {
+    const rankingList = document.querySelector('.ranking-list ul');
+    rankingList.innerHTML = ''; // Limpa o conteúdo da lista de ranking
+  }
+
+
+
   function showRanking(jsonRanking) {
     const rankingList = document.querySelector('.ranking-list ul');
     rankingList.innerHTML = '';
     const firstPlaceId = jsonRanking[0]?.id;
-
-    console.log("My id: ", myId);
-    console.log("First place id: ", firstPlaceId);
 
     const winner = document.querySelector('.overlay .mini-winner');
 

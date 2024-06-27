@@ -71,3 +71,6 @@ spec:
             port:
               number: 8080
 
+
+
+#kubectl set image deployment/game-so game-so=walymb/game-so:latest -n game
